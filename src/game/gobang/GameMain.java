@@ -78,6 +78,9 @@ public class GameMain extends JPanel implements Goconfig{
         buttonregret.setPreferredSize(new Dimension(90,40));
         buttonlose.setPreferredSize(new Dimension(90,40));
         cbItem.setPreferredSize(new Dimension(90,40));
+        JPanel eastp_tmp=new JPanel();   //添加一个面板，把按钮往下移一点，更美观
+        eastp_tmp.setPreferredSize(new Dimension(90, 30)); //设置面板大小
+        eastp.add(eastp_tmp);
         eastp.add(buttonStart);
         eastp.add(buttonregret);
         eastp.add(buttonlose);

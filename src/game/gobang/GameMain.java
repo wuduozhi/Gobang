@@ -39,11 +39,16 @@ public class GameMain extends JPanel implements Goconfig{
         map.put("011112", 3000);
     }
 
+    JButton buttonStart=new JButton("开始游戏");
+    JButton buttonregret=new JButton("悔棋");
+    JButton buttonlose=new JButton("认输");
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         GameMain main=new GameMain();
         main.Init();
         main.PieceInit();
+        main.setButton(false);
     }
 
     public void Init() {
@@ -61,9 +66,12 @@ public class GameMain extends JPanel implements Goconfig{
         jf.add(this);
         JPanel eastp=new JPanel();
         eastp.setPreferredSize(new Dimension(100,0));
-        JButton buttonStart=new JButton("开始游戏");
-        JButton buttonregret=new JButton("悔棋");
-        JButton buttonlose=new JButton("认输");
+//        JButton buttonStart=new JButton("开始游戏");
+//        JButton buttonregret=new JButton("悔棋");
+//        JButton buttonlose=new JButton("认输");
+        buttonStart=new JButton("开始游戏");
+        buttonregret=new JButton("悔棋");
+        buttonlose=new JButton("认输");
         String[] itemArray = { "人人对战", "人机对战" };
         JComboBox<String> cbItem = new JComboBox<String>(itemArray);
         buttonStart.setPreferredSize(new Dimension(90,40));
@@ -112,5 +120,10 @@ public class GameMain extends JPanel implements Goconfig{
                 }
             }
         }
+    }
+
+    public void setButton(boolean flag){
+        buttonregret.setEnabled(flag);
+        buttonlose.setEnabled(flag);
     }
 }

@@ -78,8 +78,15 @@ public class GameListener extends MouseAdapter implements ActionListener,Goconfi
         else if(col==Color.WHITE)
             go[zx][zy].color=2;
         if(go[zx][zy].judge(zx, zy)!=0) {
+            if (flag) {
+                JOptionPane.showMessageDialog(main, "黑棋胜利！");
+            } else {
+                JOptionPane.showMessageDialog(main, "白棋胜利！");
+            }
             main.removeMouseListener(this);
-            JOptionPane.showMessageDialog(main, "游戏结束");
+            cbItem.setEnabled(true);        //设置可以操作
+            main.setButton(false);
+//            JOptionPane.showMessageDialog(main, "游戏结束");
         }
         flag=!flag;
         list.add(tmpchess);
@@ -96,9 +103,11 @@ public class GameListener extends MouseAdapter implements ActionListener,Goconfi
             Piece.weightReset();           //开始前重置棋盘的权重
             flag=true;                     //第一个棋子被置为黑色
             cbItem.setEnabled(false);
+            list.clear();                 //清空棋子数组
             main.repaint();
             main.removeMouseListener(this);  //点击开始才能进行游戏
             main.addMouseListener(this);
+            main.setButton(true);              //设置悔棋、认输可点
         }else if(e.getActionCommand().equals("悔棋")){
             if(list.size()>=1) {
                 Chess chess=list.remove(list.size()-1);
@@ -114,6 +123,7 @@ public class GameListener extends MouseAdapter implements ActionListener,Goconfi
             }
             main.removeMouseListener(this);   // 移除棋盘面板上的鼠标动作监听方法和事件处理类对象。
             cbItem.setEnabled(true);        //设置可以操作
+            main.setButton(false);
         }else if(e.getSource() instanceof JComboBox){
             JComboBox<String> cbItem = (JComboBox<String>) e.getSource();// 获取事件源对象
             type = cbItem.getSelectedItem().toString();      // 获取选择的对战模式
